@@ -20,36 +20,9 @@ import java.util.function.Predicate;
  * @author Matías
  */
 public class FilesActions {
-    
-    public static String CodTxt = "(?<!\\\\)";
-    
-    public static String Codif(String S, Character c){
-        if (S == null) return null;
-        if (S.endsWith("\\")){
-            S = S+"$";
-        }else{
-            if (S.matches(".*\\\\\\$+$")){
-                S = S.replaceFirst("(\\\\\\$+$)", "$1\\$");
-            }
-        }
-        S = S.replaceAll(c+"", "\\\\"+c);
-        return S;
-    }
-    
-    public static String DeCodif(String S, Character c){
-        if (S.matches(".*\\\\\\$+$")){
-                S = S.replaceFirst("\\$$", "");
-        }
-        S = S.replaceAll("\\\\"+c,c+"");
-        return S;
-    }
-    
+        
     public static Predicate<String> ByCondition(int arg, String condition, boolean discriminante, char c){
         return (discriminante) ? s -> s.split(c+"")[arg].equalsIgnoreCase(condition):s -> !s.split(c+"")[arg].equalsIgnoreCase(condition);
-    }
-    
-    public static Predicate<String> CodifCondition(int arg, String condition, boolean discriminante, char c){
-        return (discriminante) ? s -> s.split(CodTxt+c)[arg].equalsIgnoreCase(condition):s -> !s.split(CodTxt+c)[arg].equalsIgnoreCase(condition); //modificarlo y completarlo
     }
     
     /**
