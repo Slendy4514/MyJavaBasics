@@ -26,9 +26,9 @@ public class FilesActions {
     }
     
     /**
-     * Lector (Normal): just read.
-     * @param file the file to read
-     * @return An ArrayList whit all text lines of a file.
+     * Lector (Normal): Solo lee texto.
+     * @param file El archivo a leer
+     * @return Un ArrayList con todas las lineas de texto.
      */
     public static ArrayList<String> Lector(File file){
         ArrayList<String> lineas;
@@ -38,7 +38,7 @@ public class FilesActions {
             Lect = new BufferedReader(new FileReader(file));
             String line;
             
-            while ((line = Lect.readLine()) != null){
+            while ((line = Lect.readLine()) != null){   
                 lineas.add(line);
                 }
         
@@ -52,6 +52,12 @@ public class FilesActions {
         return lineas;
         }
     
+    /**
+     * Lector (Discriminante): Solo lee texto.
+     * @param file El archivo a leer.
+     * @param Pred La condición con la que se filtrarán lines del archivo
+     * @return Un ArrayList con todas las lineas de texto.
+     */
     public static ArrayList<String> Lector(File file, Predicate<String> Pred){ //discrimina las opciones que cumplen con el argumento
         ArrayList<String> lineas;
         lineas = new ArrayList();
