@@ -25,6 +25,10 @@ public class PropManager {
         prop = new Properties();  
     }
      
+     /**
+      * @param Config
+      * @param Value
+      */
      public void SaveProp(String Config, String Value){
         try{
             prop.setProperty(Config,Value);
@@ -35,7 +39,7 @@ public class PropManager {
     }
      
      public String ReadProp(String Config){
-        String Setting = "";
+        String Setting = null;
         try{
             prop.load(new FileInputStream(File+"."+Ext));
             Setting = prop.getProperty(Config);
