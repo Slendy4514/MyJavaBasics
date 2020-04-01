@@ -16,14 +16,19 @@ import java.util.Properties;
  */
 public class PropManager {
     
-    String File, Ext;
-    public Properties prop;
+    private final String File;
+    private final String Ext;
+    private final Properties prop;
     
      public PropManager(String File, String Ext){
         this.File = File;
         this.Ext = Ext;
         prop = new Properties();  
     }
+     
+     public boolean exists(){
+         return !prop.stringPropertyNames().isEmpty();
+     }
      
      /**
       * @param Config
