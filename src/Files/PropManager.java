@@ -18,12 +18,25 @@ public class PropManager {
     
     private final String File;
     private final String Ext;
+    private final String dir;
     private final Properties prop;
     
      public PropManager(String File, String Ext){
         this.File = File;
         this.Ext = Ext;
+        this.dir = "";
         prop = new Properties();  
+    }
+     
+     public PropManager(String dir, String File, String Ext){
+        this.File = File;
+        this.Ext = Ext;
+        this.dir = dir;
+        prop = new Properties();  
+    }
+     
+    public String directory(){
+        return dir+File+"."+Ext;
     }
      
      public boolean exists(){
@@ -37,7 +50,7 @@ public class PropManager {
      public void SaveProp(String Config, String Value){
         try{
             prop.setProperty(Config,Value);
-            prop.store(new FileOutputStream(File+"."+Ext), null);
+            prop.store(new FileOutputStream(directory()), null);
         }catch(IOException e){
             System.out.println("IO Error");
         }
@@ -46,7 +59,7 @@ public class PropManager {
      public String ReadProp(String Config){
         String Setting = null;
         try{
-            prop.load(new FileInputStream(File+"."+Ext));
+            prop.load(new FileInputStream(directory()));
             Setting = prop.getProperty(Config);
         }catch(IOException e){
             System.out.println("IO Error");
