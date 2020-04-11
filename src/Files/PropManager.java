@@ -5,6 +5,7 @@
  */
 package Files;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,7 +41,8 @@ public class PropManager {
     }
      
      public boolean exists(){
-         return !prop.stringPropertyNames().isEmpty();
+         File P = new File(directory());
+         return P.exists();
      }
      
      /**
@@ -49,10 +51,11 @@ public class PropManager {
       */
      public void SaveProp(String Config, String Value){
         try{
+            prop.load(new FileInputStream(directory()));
             prop.setProperty(Config,Value);
             prop.store(new FileOutputStream(directory()), null);
         }catch(IOException e){
-            System.out.println("IO Error");
+            e.printStackTrace();
         }
     }
      
@@ -62,7 +65,7 @@ public class PropManager {
             prop.load(new FileInputStream(directory()));
             Setting = prop.getProperty(Config);
         }catch(IOException e){
-            System.out.println("IO Error");
+            e.printStackTrace();
         }
         return Setting;
     }
