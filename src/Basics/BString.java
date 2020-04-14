@@ -91,6 +91,10 @@ public class BString {
         return Text.substring(0,i)+Text.substring(f);
     }
     
+    public String removeString(int i){
+        return Text.substring(0,i);
+    }
+    
     public String removeString (String inicio, String fin){
         return removeString(inicio, fin, 1, 1);
     }
