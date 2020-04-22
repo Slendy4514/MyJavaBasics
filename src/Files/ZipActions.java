@@ -45,6 +45,7 @@ public class ZipActions {
     
     public static void unZipFile(File Z, File destDir) throws FileNotFoundException, IOException{
         byte[] buffer = new byte[1024];
+        destDir. mkdir();
         try (ZipInputStream zis = new ZipInputStream(new FileInputStream(Z.getPath()))) {
             ZipEntry zE = zis.getNextEntry();
             while (zE != null) {

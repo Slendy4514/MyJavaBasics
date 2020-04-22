@@ -48,15 +48,18 @@ public class PropManager {
      /**
       * @param Config
       * @param Value
+     * @return 
       */
-     public void SaveProp(String Config, String Value){
+     public boolean SaveProp(String Config, String Value){
         try{
             prop.load(new FileInputStream(directory()));
             prop.setProperty(Config,Value);
             prop.store(new FileOutputStream(directory()), null);
         }catch(IOException e){
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
      
      public String ReadProp(String Config){
