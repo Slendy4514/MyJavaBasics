@@ -2,11 +2,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>MyJavaBasics</groupId>
   <artifactId>MyJavaBasics</artifactId>
-  <version>1.2.0-snapshot_20.4.13</version>
+  <version>1.2.0-snapshot_20.5.4</version>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
-      <plugin>
+      <plugin> 
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.0</version>
         <configuration>

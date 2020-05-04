@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.function.Predicate;
 
 /**
@@ -20,6 +21,12 @@ import java.util.function.Predicate;
  * @author Matías
  */
 public class FilesActions {
+    
+    private File F;
+    
+    private FilesActions(File F){
+        this.F = F;
+    }
         
     public static Predicate<String> ByCondition(int arg, String condition, boolean discriminante, char c){
         return (discriminante) ? s -> s.split(c+"")[arg].equalsIgnoreCase(condition):s -> !s.split(c+"")[arg].equalsIgnoreCase(condition);
@@ -123,17 +130,20 @@ public class FilesActions {
         return lineas;
     }
     
-    public static void Save(File file,String Save) throws FileNotFoundException, IOException{
-        PrintWriter pw;
-        ArrayList lista = Lector(file);
-        pw = new PrintWriter(file);
-        //FileWriter fw = new FileWriter(file,true);
-        for(int i = 0; i<= lista.size()-1; ++i){
-        pw.println(lista.get(i));}
-        Save = Save.replaceAll("\n", "");
-        pw.write(Save);
-        //fw.write(System.lineSeparator()+Save);
-        pw.close();
+    public static void Save(File file,String Save) throws IOException{
+        try (FileWriter fw = new FileWriter(file,true)) {
+            Save = Save.replaceAll("\n", "");
+            fw.write(Save+System.lineSeparator());
+        }
+    }
+    
+    public static void Save(File file, Collection<String> Save) throws IOException{
+        try (FileWriter fw = new FileWriter(file,true)) {
+            for(String S : Save){
+                S = S.replaceAll("\n", "");
+                fw.write(S+System.lineSeparator());
+            }
+        }
     }
     
     public static void Remove (File file, String Remove) throws FileNotFoundException{
