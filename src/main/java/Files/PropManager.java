@@ -52,7 +52,8 @@ public class PropManager {
       */
      public boolean SaveProp(String Config, String Value){
         try{
-            prop.load(new FileInputStream(directory()));
+            if(this.exists())
+                prop.load(new FileInputStream(directory()));
             prop.setProperty(Config,Value);
             prop.store(new FileOutputStream(directory()), null);
         }catch(IOException e){
